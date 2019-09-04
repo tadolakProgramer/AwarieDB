@@ -29,14 +29,14 @@ public class AsyncWorker extends AsyncTask <String, Void, String> {
     @Override
     protected String doInBackground(String ... params) {
         String type = params[0];
-        String login_url = "http://";
-        if(type.equals("login")){
+        String login_url = "http://91.233.236.113/login.php";
+        if(type.equals("Login")){
             try {
                 String user_name = params[1];
                 String password = params[2];
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                httpURLConnection.setRequestMethod("Post");
+                httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
@@ -59,6 +59,7 @@ public class AsyncWorker extends AsyncTask <String, Void, String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
+                return result;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
